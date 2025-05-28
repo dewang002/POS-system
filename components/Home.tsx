@@ -2,46 +2,144 @@
 
 import { useEffect, useState } from "react"
 import BottomNav from "./BottomNav"
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+} from "./ui/card"
+import {
+  Banknote,
+  TimerIcon,
+  CheckCheck,
+  Circle,
+} from "lucide-react"
 
 const Home = () => {
-    const [Datetime, setDateTime] = useState(new Date())
+  const [dateTime, setDateTime] = useState(new Date())
 
-    useEffect(() => {
-        const time = setInterval(() => setDateTime(new Date()), 1000)
-    }, [])
+  useEffect(() => {
+    const timer = setInterval(() => setDateTime(new Date()), 1000)
+    return () => clearInterval(timer)
+  }, [])
 
-    const formatDateTime = (date: Date) => {
-        return date.toLocaleString('en-US', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit'
-        })
-    }
+  const formatDateTime = (date: Date) => {
+    return date.toLocaleString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+    })
+  }
 
-    return (
-        <div className="h-screen w-full overflow-hidden ">
-            <div className="flex h-full w-full">
-                <div className="flex-3 flex text-white px-4 bg-zinc-800">
-                    <div className="w-full ">
-                        <h1 className="text-2xl font-bold">Hello, </h1>
-                        <p className="text-lg text-light">Give your best services for customers 😄</p>
-                    </div>
-                    <div>
-                        <h1>{formatDateTime(Datetime)}</h1>
-                    </div>
-                </div>
-                <div className="flex-1 bg-pink-800">
+  const cardDetail = [
+    {
+      title: "Total Earnings",
+      icon: Banknote,
+      color: "green",
+      number: 512,
+      textColor: "text-green-600",
+      profit: "then yesterday",
+    },
+    {
+      title: "In Progress",
+      icon: TimerIcon,
+      color: "yellow",
+      number: 16,
+      textColor: "text-green-600",
+      profit: "then yesterday",
+    },
+  ]
 
-                </div>
+  return (
+    <div className="w-full h-screen overflow-hidden pb-20">
+      <div className="flex w-full">
+        <div className="flex-3 text-white px-4 bg-zinc-800 min-h-screen">
+          <div className="w-full mb-8 flex justify-between">
+            <div>
+              <h1 className="text-2xl font-bold">Hello, </h1>
+              <p className="text-lg text-light">
+                Give your best services for customers 😄
+              </p>
+            </div>
+            <div>
+              <h1 className="text-xl">{formatDateTime(dateTime)}</h1>
+            </div>
+          </div>
+
+          <div className="lg:flex gap-2 mb-6">
+            {cardDetail.map((elem, index) => (
+              <Card
+                key={index}
+                className="w-full flex flex-col justify-between bg-black text-white border-0 shadow-none"
+              >
+                <CardHeader className="flex justify-between items-center">
+                  <CardTitle>{elem.title}</CardTitle>
+                  <CardTitle>
+                    <elem.icon color={elem.color} />
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-col">
+                  <p className="text-4xl font-bold">{elem.number}</p>
+                  <p className="font-semibold">
+                    <span className={elem.textColor}>1.6%</span> {elem.profit}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="bg-black rounded-lg m-1 p-4">
+            <div className="flex justify-between mb-2">
+              <h1 className="font-bold">Recent Orders</h1>
+              <h1 className="text-blue-700 font-bold">View all</h1>
             </div>
 
-            <BottomNav />
+            <div className="mb-4">
+              <input
+                type="text"
+                placeholder="Search recent orders . . ."
+                className="p-2 w-full rounded-sm bg-zinc-700 text-white"
+              />
+            </div>
+
+            {/* Scrollable Order List Only */}
+            <div className="max-h-[500px] overflow-y-auto pr-2">
+              {[...Array(12)].map((_, index) => (
+                <div
+                  key={index}
+                  className="w-full p-4 mb-2 flex items-center justify-between bg-zinc-900 rounded"
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="bg-yellow-600 p-3 rounded-md text-black font-bold">
+                      AM
+                    </div>
+                    <div>
+                      <h1>Amrit Raj</h1>
+                      <p className="text-sm text-zinc-400">8 items</p>
+                    </div>
+                  </div>
+                  <div className="text-yellow-500 border border-yellow-500 px-2 py-1 rounded text-sm">
+                    Table No: 3
+                  </div>
+                  <div className="text-right text-sm">
+                    <h1 className="flex items-center gap-2 text-green-500">
+                      <CheckCheck color="green" size={16} /> Ready
+                    </h1>
+                    <h1 className="flex items-center gap-2 text-green-500">
+                      <Circle fill="green" color="green" size={12} /> Ready to serve
+                    </h1>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-    )
+
+        <div className="flex-1 bg-pink-800 hidden lg:block" />
+      </div>
+
+      <BottomNav />
+    </div>
+  )
 }
 
 export default Home
