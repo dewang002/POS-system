@@ -14,6 +14,7 @@ import {
   CheckCheck,
   Circle,
 } from "lucide-react"
+import Image from "next/image"
 
 const Home = () => {
   const [dateTime, setDateTime] = useState(new Date())
@@ -50,9 +51,9 @@ const Home = () => {
   ]
 
   return (
-    <div className="w-full h-screen overflow-hidden pb-20">
+    <div className="w-full h-screen overflow-hidden pb-20 bg-zinc-800">
       <div className="flex w-full">
-        <div className="flex-3 text-white px-4 bg-zinc-800 min-h-screen">
+        <div className="flex-3 text-white px-4  min-h-screen">
           <div className="w-full mb-8 flex justify-between">
             <div>
               <h1 className="text-2xl font-bold">Hello, </h1>
@@ -101,8 +102,7 @@ const Home = () => {
               />
             </div>
 
-            {/* Scrollable Order List Only */}
-            <div className="max-h-[500px] overflow-y-auto pr-2">
+            <div className="scrollbar-hidden max-h-[500px] overflow-y-auto pr-2">
               {[...Array(12)].map((_, index) => (
                 <div
                   key={index}
@@ -134,7 +134,32 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="flex-1 bg-pink-800 hidden lg:block" />
+        <div className="flex-1 bg-black rounded-lg hidden lg:block" >
+          <div className="flex justify-between items-center p-2">
+            <h1 className="text-lg text-white">Polular Dishes</h1>
+            <h3 className="text-blue-900 font-bold">View all</h3>
+          </div>
+          <div className="flex flex-col items-center gap-4 p-2">
+            <Card className="w-full max-w-sm bg-zinc-900 text-white shadow-md">
+              <CardContent className="flex items-center gap-4 ">
+                <Image
+                  src="" 
+                  alt="Butter Chicken"
+                  width={48}
+                  height={48}
+                  className="rounded-full object-cover bg-white"
+                />
+                <div>
+                  <p className="font-semibold">Butter Chicken</p>
+                  <p className="text-sm text-zinc-400">
+                    Orders: <span className="font-bold text-white">250</span>
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+
       </div>
 
       <BottomNav />
