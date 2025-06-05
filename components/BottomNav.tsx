@@ -1,9 +1,10 @@
 import React from 'react';
 import { Home, List, MoreHorizontal } from 'lucide-react';
+import Link from 'next/link';
 
 const BottomNav = () => {
   return (
-    <div className="h-screen w-screen flex flex-col">
+    <div className=" w-screen flex flex-col">
 
       <div className="relative">
         <div className="fixed bottom-0 left-0 right-0 bg-black text-white flex justify-around items-center h-16 shadow-lg z-10">
@@ -11,10 +12,10 @@ const BottomNav = () => {
             <Home size={20} />
             <span>Home</span>
           </div>
-          <div className="flex flex-col items-center text-sm">
+          <Link  href={'/order'} className="flex flex-col items-center text-sm">
             <List size={20} />
             <span>Orders</span>
-          </div>
+          </Link>
           <div className="flex flex-col items-center text-sm">
             <List size={20} />
             <span>Tables</span>

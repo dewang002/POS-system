@@ -143,7 +143,7 @@ const Home = () => {
             <Card className="w-full max-w-sm bg-zinc-900 text-white shadow-md">
               <CardContent className="flex items-center gap-4 ">
                 <Image
-                  src="" 
+                  src=""
                   alt="Butter Chicken"
                   width={48}
                   height={48}
