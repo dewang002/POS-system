@@ -8,18 +8,18 @@ const BottomNav = () => {
 
       <div className="relative">
         <div className="fixed bottom-0 left-0 right-0 bg-black text-white flex justify-around items-center h-16 shadow-lg z-10">
-          <div className="flex flex-col items-center text-sm">
+          <Link href={'/'} className="flex flex-col items-center text-sm">
             <Home size={20} />
             <span>Home</span>
-          </div>
+          </Link>
           <Link  href={'/order'} className="flex flex-col items-center text-sm">
             <List size={20} />
             <span>Orders</span>
           </Link>
-          <div className="flex flex-col items-center text-sm">
+          <Link href={'/table'} className="flex flex-col items-center text-sm">
             <List size={20} />
             <span>Tables</span>
-          </div>
+          </Link>
           <div className="flex flex-col items-center text-sm">
             <MoreHorizontal size={20} />
             <span>More</span>

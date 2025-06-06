@@ -162,7 +162,6 @@ const Home = () => {
 
       </div>
 
-      <BottomNav />
     </div>
   )
 }

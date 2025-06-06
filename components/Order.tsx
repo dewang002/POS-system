@@ -1,4 +1,5 @@
 'use client'
+
 import React from 'react'
 import { Button } from './ui/button'
 import BottomNav from './BottomNav'
@@ -9,10 +10,10 @@ import { useRouter } from 'next/navigation'
 const Order = () => {
   const router = useRouter()
   return (
-    <section className='bg-[#1f1f1f93] overflow-hidden h-[calc(100vh-5rem)]  text-white'>
+    <section className='bg-[#1f1f1f93] overflow-hidden h-[calc(100vh-5rem)] text-white'>
       <div className='flex justify-between items-center p-2 '>
         <div className='flex items-center gap-4'>
-          <Button onClick={()=>router.back()}>
+          <Button onClick={() => router.back()}>
             <ArrowLeft />
           </Button>
           <h1 className='font-bold text-xl'>Order</h1>
