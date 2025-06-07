@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import BottomNav from "./BottomNav"
 import {
   Card,
   CardHeader,
